@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Events\HelloWorld;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,11 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    //Déclancher l'événement Hello World
+    HelloWorld::dispatch();
+
+    //event(Helloworld::class)
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
